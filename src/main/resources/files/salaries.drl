@@ -1,0 +1,17 @@
+global com.example.rule_engine_demo.dto.ResponseDto responseDtoList;
+import com.example.rule_engine_demo.entity.Employee;
+
+dialect "mvel"
+rule "showing yearly salary"
+when
+
+   $employee: Employee() from employeeList
+then
+    double yearlySalary = employee.getSalary() * 12;
+
+    responseDtoList.setId(employee.getId());
+    responseDtoList.setName(employee.getName());
+    responseDtoList.setSalary(employee.getSalary());
+    responseDtoList.setYearlySalary(yearlySalary);
+
+end

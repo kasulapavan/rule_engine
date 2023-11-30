@@ -1,0 +1,17 @@
+import com.example.rule_engine_demo.entity.Employee;
+global com.example.rule_engine_demo.dto.ResponseDto responseDto;
+
+dialect "mvel"
+rule "showing yearly salary"
+when
+
+   employee: Employee()
+then
+    double yearlySalary = employee.getSalary() * 12;
+
+    responseDto.setId(employee.getId());
+    responseDto.setName(employee.getName());
+    responseDto.setSalary(employee.getSalary());
+    responseDto.setYearlySalary(yearlySalary);
+
+end
